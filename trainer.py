@@ -2,7 +2,7 @@ import torch
 import torch.utils
 from torch.utils.data import DataLoader,Dataset
 import tqdm
-import customized_MLP
+from base_model import customized_MLP
 def trainer(model,loss,optim,train_loader,epoch,lr,optim_setting):
     optimizer=optim(model.parameters(),lr=lr)
     criterion=loss()
@@ -21,7 +21,7 @@ def trainer(model,loss,optim,train_loader,epoch,lr,optim_setting):
     return loss_list
 
 
-def test(model,test_loader):
+def classifier_test(model,test_loader):
     correct=0
     total=0
     with torch.no_grad():
