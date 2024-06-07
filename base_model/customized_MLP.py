@@ -2,10 +2,10 @@ import torch
 import torch.nn as nn
 
 class MLP(nn.Module):
-    def __init__(self, input_shape,output_shape,layer_node,af) -> None:
+    def __init__(self, input_shape,output_shape,layer_node,af=nn.ReLU()) -> None:
         super().__init__()
         self.input_layer=nn.Linear(input_shape,layer_node[0])
-        self.af=af()
+        self.af=af
         hidden_layers=[]
         layer_node
         for i in range(len(layer_node)-1):
@@ -23,6 +23,6 @@ class MLP(nn.Module):
 
 
 if __name__=="__main__":
-    net=MLP(1,10,[10,3,4,500,10],nn.ReLU)
+    net=MLP(1,10,[10,3,4,500,10],nn.ReLU())
     print(net(torch.tensor([1],dtype=torch.float)))
 
